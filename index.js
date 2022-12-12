@@ -121,10 +121,10 @@ app.post('/players', bodyParser.json(), function (req, res) {
     let newPlayers = {
         id: uniqid(),
         name: sanitizeHtml(req.body.name),
-        qualification: sanitizeHtml(req.body.qualification), //A játékos minősítése (1-10)
-        position: sanitizeHtml(req.body.position), //hátvéd, csatár, stb.
+        qualification: req.body.qualification, //A játékos minősítése (1-10)
+        position: req.body.position, //hátvéd, csatár, stb.
         club: sanitizeHtml(req.body.club), //melyik klubban játszik
-        age: sanitizeHtml(req.body.age), // hány éves
+        age: req.body.age, // hány éves
         nationality: sanitizeHtml(req.body.nationality) // nemzetiség
     }
 

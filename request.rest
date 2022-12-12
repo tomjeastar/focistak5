@@ -12,10 +12,12 @@ post http://localhost:3000/players
 Content-Type: application/json
 
 {
-    "name": "Á1111",
-    "quantity": 24,
-    "price": 2500,
-    "type": "tejtermék"
+    "name": "<script>alert('betörtem')</script>",
+    "qualification": "10", 
+    "position": "nemtom",
+    "club": "passz",
+    "age": "69",
+    "nationality": "roman" 
 }
 
 ### put
