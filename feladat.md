@@ -67,20 +67,14 @@ Az alábbi módosítánál ügyeljen arra, hogy
     - Az űrlap alján legyen egy `mentés` gomb, aminek click eseményéhez rendeljen hozzá egy megfelelően elnevezett (pl. `playerAppend()`) függvényt
     - commit: `űrlap kész`, majd push
 
-2. A függvény olvassa be az adatokat az űrlapról és készítse el a hozzáfűzendő newPlayer nevű objektumot, megfelelő id generálással, amihez építse be az alábbi függvényt:
-```js
-function idGen(){
-    return Date.now().toString(36) + Math.random().toString(36).substr(2);
-}
-```
-- commit: `playerAppend: newPlayer` 
 
-3. A fatch függvény használatával készítse el vagy then, vagy awayt szintaktikával az adatok posztolásához szükséges ajax kérést. 
+
+32. A fetch függvény használatával készítse el vagy then, vagy awayt szintaktikával az adatok posztolásához szükséges ajax kérést. 
     - A művelet helyes lefolyása után ürítse a mezők tartalmát.
     - használjon hibakezelést is.
     - commit: `poszt by fetch`
 
-4. A művelet helyességét tesztelje a request.res-el (kérdezze le az adatokat).
+3. A művelet helyességét tesztelje a request.res-el (kérdezze le az adatokat).
     - vigyen fel az űrlap segítségével annyi focistát, hogy összesen 5db. szerepeljen az adatbázisban.
     - commit: `kliens poszt teszt ok`
 

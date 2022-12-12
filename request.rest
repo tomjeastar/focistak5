@@ -5,7 +5,7 @@ get http://localhost:3000/players
 get http://localhost:3000/players/1
 
 ### delete
-delete http://localhost:3000/players/2
+delete http://localhost:3000/players/igkq74wlbki0dje
 
 ### post
 post http://localhost:3000/players
@@ -26,7 +26,9 @@ Content-Type: application/json
 
 {
     "name": "<script>alert('betörtem')</script> heló",
-    "quantity": 124,
-    "price": 3500,
-    "type": "kakaótermék"
+    "qualification": "10", 
+    "position": "nemtom",
+    "club": "passz",
+    "age": "69",
+    "nationality": "roman" 
 }
