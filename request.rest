@@ -2,7 +2,7 @@
 get http://[::1]:3000/products
 
 ### read by id
-get http://localhost:3000/products/apcj6eslbgd0wf1
+get http://localhost:3000/products/apcj3hklbge9fnr
 
 ### delete
 delete http://localhost:3000/products/apcjgc4lbge9j06
