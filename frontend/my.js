@@ -22,7 +22,7 @@ async function playerAppend() {
             },
             body: JSON.stringify(player)
 
-        })
+        }) 
         if (!response.ok) {
             throw "Post meghiúsult"
         }
