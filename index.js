@@ -1,25 +1,25 @@
 const express = require('express')
 const fs = require("fs");
 const bodyParser = require("body-parser")
-const uniqid = require('uniqid'); 
+const uniqid = require('uniqid');
 const sanitizeHtml = require('sanitize-html');
 
-const dataFile = "./data/products.json";
+const dataFile = "./data/players.json";
 const port = 3000
 
 const app = express()
 
-//get product by id
-app.get('/products/:id', function (req, res) {
+//get players by id
+app.get('/players/:id', function (req, res) {
     let id = req.params.id;
 
     //beolvassuk az összes adatot: json -> obj
-    fs.readFile(dataFile, (error, data)=>{
-        let products = JSON.parse(data);
+    fs.readFile(dataFile, (error, data) => {
+        let players = JSON.parse(data);
 
-        //megkeressük a megfelelő product-ot id alján
-        const productsById = products.find(product => product.id === id)
-        if (!productsById) {
+        //megkeressük a megfelelő players-ot id alján
+        const playersById = players.find(player => player.id === id)
+        if (!playersById) {
             // nincs meg
             let message = {
                 error: `id: ${id} not found`
@@ -29,31 +29,31 @@ app.get('/products/:id', function (req, res) {
             return;
         }
         //visszaküldjük
-        res.send(productsById);
+        res.send(playersById);
     });
 })
 
-//get products
-app.get('/products', function (req, res) {
-    fs.readFile(dataFile, (error, data)=>{
-        let products = data;
-        res.send(products);
+//get players
+app.get('/players', function (req, res) {
+    fs.readFile(dataFile, (error, data) => {
+        let players = data;
+        res.send(players);
     });
 })
 
 
-//delete product by id
-app.delete('/products/:id', function (req, res) {
+//delete players by id
+app.delete('/players/:id', function (req, res) {
     let id = req.params.id;
 
     //beolvassuk az összes adatot: json -> obj
-    fs.readFile(dataFile, (error, data)=>{
-        let products = JSON.parse(data);
+    fs.readFile(dataFile, (error, data) => {
+        let players = JSON.parse(data);
 
-        //megkeressük a megfelelő product indexét id alján
-        const productsIndexById = products.findIndex(product => product.id === id)
+        //megkeressük a megfelelő players indexét id alján
+        const playersIndexById = players.findIndex(player => player.id === id)
 
-        if (productsIndexById === -1) {
+        if (playersIndexById === -1) {
             // nincs meg
             let message = {
                 error: `id: ${id} not found`
@@ -63,36 +63,38 @@ app.delete('/products/:id', function (req, res) {
             return;
         }
         //letöröljük
-        products.splice(productsIndexById, 1);
+        players.splice(playersIndexById, 1);
 
         //visszaír: obj -> json
-        products = JSON.stringify(products)
-        fs.writeFile(dataFile, products, (error)=>{
+        players = JSON.stringify(players)
+        fs.writeFile(dataFile, players, (error) => {
             console.log(error);
             //visszaküldjük, hogy melyik id-t töröltük
-            res.send({id: id});
+            res.send({ id: id });
         })
     });
 })
 
-//put product by id
-app.put('/products/:id', bodyParser.json(),function (req, res) {
+//put players by id
+app.put('/players/:id', bodyParser.json(), function (req, res) {
     let id = req.params.id;
-    let putProduct = {
-        id: id, 
+    let putPlayers = {
+        id: id,
         name: sanitizeHtml(req.body.name),
-        quantity: req.body.quantity,
-        price: req.body.price,
-        type: sanitizeHtml(req.body.type)
+        qualification: sanitizeHtml(req.body.qualification), //A játékos minősítése (1-10)
+        position: sanitizeHtml(req.body.position), //hátvéd, csatár, stb.
+        club: sanitizeHtml(req.body.club), //melyik klubban játszik
+        age: sanitizeHtml(req.body.age), // hány éves
+        nationality: sanitizeHtml(req.body.nationality) // nemzetiség
     }
     //beolvassuk az összes adatot: json -> obj
-    fs.readFile(dataFile, (error, data)=>{
-        let products = JSON.parse(data);
+    fs.readFile(dataFile, (error, data) => {
+        let players = JSON.parse(data);
 
-        //megkeressük a megfelelő product indexét id alján
-        const productsIndexById = products.findIndex(product => product.id === id)
+        //megkeressük a megfelelő players indexét id alján
+        const playersIndexById = players.findIndex(player => player.id === id)
 
-        if (productsIndexById === -1) {
+        if (playersIndexById === -1) {
             // nincs meg
             let message = {
                 error: `id: ${id} not found`
@@ -102,39 +104,41 @@ app.put('/products/:id', bodyParser.json(),function (req, res) {
             return;
         }
         //felülírjuk
-        products[productsIndexById] = putProduct;
+        players[playersIndexById] = putPlayers;
 
         //visszaír: obj -> json
-        products = JSON.stringify(products)
-        fs.writeFile(dataFile, products, (error)=>{
+        players = JSON.stringify(players)
+        fs.writeFile(dataFile, players, (error) => {
             console.log(error);
             //visszaküldjük, a módosított rekordot
-            res.send(putProduct);
+            res.send(putPlayers);
         })
     });
 })
 
 //post
-app.post('/products',bodyParser.json(), function (req, res) {
-    let newProduct = {
-        id: uniqid(), 
+app.post('/players', bodyParser.json(), function (req, res) {
+    let newPlayers = {
+        id: uniqid(),
         name: sanitizeHtml(req.body.name),
-        quantity: req.body.quantity,
-        price: req.body.price,
-        type: sanitizeHtml(req.body.type)
+        qualification: sanitizeHtml(req.body.qualification), //A játékos minősítése (1-10)
+        position: sanitizeHtml(req.body.position), //hátvéd, csatár, stb.
+        club: sanitizeHtml(req.body.club), //melyik klubban játszik
+        age: sanitizeHtml(req.body.age), // hány éves
+        nationality: sanitizeHtml(req.body.nationality) // nemzetiség
     }
 
-    
-    fs.readFile(dataFile,(error, data)=>{
+
+    fs.readFile(dataFile, (error, data) => {
         //beolvas, json -> obj
-        let products = JSON.parse(data);
+        let players = JSON.parse(data);
         //push
-        products.push(newProduct);
+        players.push(newPlayers);
         //visszaír: obj -> json
-        products = JSON.stringify(products)
-        fs.writeFile(dataFile, products, (error)=>{
+        players = JSON.stringify(players)
+        fs.writeFile(dataFile, players, (error) => {
             console.log(error);
-            res.send(newProduct);
+            res.send(newPlayers);
         })
 
     })
@@ -143,4 +147,4 @@ app.post('/products',bodyParser.json(), function (req, res) {
 
 app.listen(port)
 
-//<script>alert('betörtem')</scrip>
+//<script>alert('betörtem')</script>

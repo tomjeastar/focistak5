@@ -1,20 +1,20 @@
 [
     {
-        "id": "1", 
+        "id": "1",
         "name": "Ronaldo",
         "qualification": 10,
-        "position": "csatár", 
-        "club": "Real Madrid", 
+        "position": "csatár",
+        "club": "Real Madrid",
         "age": 37,
         "nationality": "portugál"
     },
     {
-        "id": "2", 
+        "id": "2",
         "name": "Messi",
         "qualification": 9,
-        "position": "csatár", 
-        "club": "FC Barcelona", 
-        "age": 34,
+        "position": "csatár",
+        "club": "FC Barcelona",
+        "age": 37,
         "nationality": "argentin"
     }
 ]

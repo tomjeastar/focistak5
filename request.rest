@@ -1,14 +1,14 @@
 ### read
-get http://[::1]:3000/products
+get http://localhost:3000/players
 
 ### read by id
-get http://localhost:3000/products/apcj3hklbge9fnr
+get http://localhost:3000/players/1
 
 ### delete
-delete http://localhost:3000/products/apcjgc4lbge9j06
+delete http://localhost:3000/players/2
 
 ### post
-post http://localhost:3000/products
+post http://localhost:3000/players
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ### put
-put http://localhost:3000/products/apcj3hklbge9fnr
+put http://localhost:3000/players/apcj3hklbge9fnr
 Content-Type: application/json
 
 {
