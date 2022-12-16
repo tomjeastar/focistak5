@@ -30,5 +30,5 @@ Content-Type: application/json
     "position": "csatár2",
     "club": "Seholse",
     "age": 42,
-    "nationality": "Bazília"
+    # "nationality": "Bazília"
 }
