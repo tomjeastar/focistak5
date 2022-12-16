@@ -1,4 +1,4 @@
-"# Feladatok
+# Feladatok
 ## github
 1. Készítsen egy repo-t `focistak` néven
 2. A `repok excel fájlba` jegyezze be a repo útvonalát
@@ -14,10 +14,10 @@
 player = {
     "id": "string", 
     "name": "string",
-    "qualification": "int", //A játékos minősítése (1-10)
+    "qualification": int, //A játékos minősítése (1-10)
     "position": "string", //hátvéd, csatár, stb.
     "club": "string", //melyik klubban játszik
-    "age": "int", // hány éves
+    "age": int, // hány éves
     "nationality": "string" // nemzetiség
 }
 ```
@@ -69,7 +69,7 @@ Az alábbi módosítánál ügyeljen arra, hogy
 
 
 
-32. A fetch függvény használatával készítse el vagy then, vagy awayt szintaktikával az adatok posztolásához szükséges ajax kérést. 
+2. A fatch függvény használatával készítse el vagy then, vagy awayt szintaktikával az adatok posztolásához szükséges ajax kérést. 
     - A művelet helyes lefolyása után ürítse a mezők tartalmát.
     - használjon hibakezelést is.
     - commit: `poszt by fetch`
